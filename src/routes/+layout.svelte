@@ -1,4 +1,5 @@
 <script lang="ts">
+  const { children } = $props();
   import "../app.css";
   const osTheme = $state("");
   const fill = $state("");
@@ -34,4 +35,4 @@
   </nav>
 </header>
 
-<slot></slot>
+{@render children()}
