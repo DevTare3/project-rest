@@ -29,7 +29,7 @@
 
   <Select.Root>
     <Select.Trigger class="py-8 w-[55vw] shadow-xl">
-      <Select.Value class="px-2" placeholder="Filter by Region" />
+      <Select.Value class="px-4" placeholder="Filter by Region" />
     </Select.Trigger>
     <Select.Content>
       <Select.Item value="africa">Africa</Select.Item>
