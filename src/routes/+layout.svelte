@@ -8,10 +8,10 @@
 <header>
   <nav>
     <div
-      class="bg-Very-Light-Gray-(Light-Mode-Background) dark:bg-Dark-Blue(Dark-Mode-Elements) flex items-center justify-between py-8 px-4"
+      class="light-bg dark:dark-el flex items-center justify-between py-8 px-4"
     >
       <p
-        class="text-Very-Dark-Blue-(Light-Mode-Text) dark:text-White-(Dark-Mode-text-Light-Mode-Elements)"
+        class="text-light-text dark:text-white"
       >
         Where in the world?
       </p>
@@ -26,7 +26,7 @@
           ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg
         >
         <p
-          class="text-Very-Dark-Blue-(Light-Mode-Text) dark:text-White-(Dark-Mode-text-Light-Mode-Elements)"
+          class="text-light-text dark:text-white"
         >
           Light Mode
         </p>
