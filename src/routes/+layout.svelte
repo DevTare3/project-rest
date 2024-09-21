@@ -1,17 +1,18 @@
 <script lang="ts">
   const { children } = $props();
   import "../app.css";
-  const osTheme = $state("");
+  const osTheme = $state("Dark Mode");
   const fill = $state("");
+
 </script>
 
 <header>
   <nav>
     <div
-      class="light-bg dark:dark-el flex items-center justify-between py-8 px-4"
+      class="bg-white dark:bg-dark-el flex items-center justify-between py-8 px-4 shadow-2xl"
     >
       <p
-        class="text-light-text dark:text-white"
+        class="text-light-text text-lg font-extrabold dark:text-white"
       >
         Where in the world?
       </p>
@@ -21,14 +22,14 @@
           width="24"
           height="24"
           viewBox="0 0 24 24"
-          fill="white"
+          fill=""
           class="lucide lucide-moon"
           ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg
         >
         <p
           class="text-light-text dark:text-white"
         >
-          Light Mode
+          {osTheme}
         </p>
       </div>
     </div>
