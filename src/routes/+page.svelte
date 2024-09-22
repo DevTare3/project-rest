@@ -1,5 +1,8 @@
 <script lang="ts">
   import * as Select from "$lib/components/ui/select";
+  //import { error } from "@sveltejs/kit";
+  let { data } = $props();
+  const { countries } = $derived(data);
 </script>
 
 <main class="bg-light-bg dark:bg-dark-bg px-6 py-8">
@@ -28,10 +31,16 @@
   </div>
 
   <Select.Root>
-    <Select.Trigger class="py-8 w-[55vw] shadow-xl">
+    <Select.Trigger
+      class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
+dark:bg-dark-el font-semibold text-base"
+    >
       <Select.Value class="px-4" placeholder="Filter by Region" />
     </Select.Trigger>
-    <Select.Content>
+    <Select.Content
+      class="dark:placeholder:text-white
+dark:bg-dark-el"
+    >
       <Select.Item value="africa">Africa</Select.Item>
       <Select.Item value="america">America</Select.Item>
       <Select.Item value="asia">Asia</Select.Item>
@@ -39,4 +48,26 @@
       <Select.Item value="oceania">Oceania</Select.Item>
     </Select.Content>
   </Select.Root>
+
+  <div>
+    {#await countries}
+      <p>Fetching Countries...</p>
+    {:then countries}
+      <div>
+        <ul>
+          {#each countries as country}
+            <li>
+              <div>
+                <img src={country.flag} alt="the flag of {country.name}" />
+              </div>
+              <h2>{country.name}</h2>
+              <p>{country.population}</p>
+              <p>{country.region}</p>
+              <p>{country.capital}</p>
+            </li>
+          {/each}
+        </ul>
+      </div>
+    {/await}
+  </div>
 </main>
