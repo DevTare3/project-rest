@@ -35,17 +35,41 @@
       class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
 dark:bg-dark-el font-semibold text-base"
     >
-      <Select.Value class="px-4" placeholder="Filter by Region" />
+      <Select.Value
+        class="px-4 dark:placeholder:text-white
+dark:bg-dark-el"
+        placeholder="Filter by Region"
+      />
     </Select.Trigger>
     <Select.Content
       class="dark:placeholder:text-white
 dark:bg-dark-el"
     >
-      <Select.Item value="africa">Africa</Select.Item>
-      <Select.Item value="america">America</Select.Item>
-      <Select.Item value="asia">Asia</Select.Item>
-      <Select.Item value="europe">Europe</Select.Item>
-      <Select.Item value="oceania">Oceania</Select.Item>
+      <Select.Item
+        class="dark:placeholder:text-white
+dark:bg-dark-el"
+        value="africa">Africa</Select.Item
+      >
+      <Select.Item
+        class="dark:placeholder:text-white
+"
+        value="america">America</Select.Item
+      >
+      <Select.Item
+        class="dark:placeholder:text-white
+"
+        value="asia">Asia</Select.Item
+      >
+      <Select.Item
+        class="dark:placeholder:text-white
+"
+        value="europe">Europe</Select.Item
+      >
+      <Select.Item
+        class="dark:placeholder:text-white
+"
+        value="oceania">Oceania</Select.Item
+      >
     </Select.Content>
   </Select.Root>
 
@@ -56,7 +80,10 @@ dark:bg-dark-el"
       <div>
         <ul>
           {#each countries as country}
-            <li class="bg-white shadow-xl mb-10 rounded-b-md">
+            <li
+              class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
+dark:bg-dark-el"
+            >
               <div class="rounded-t-md">
                 <img
                   class="rounded-t-md"
@@ -64,7 +91,7 @@ dark:bg-dark-el"
                   alt="the flag of {country.name.official}"
                 />
               </div>
-              <div class="px-6 pt-6 pb-12 text-base">
+              <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
                 <h2 class="font-bold text-lg mb-3">{country.name.common}</h2>
                 <p class="text-light-text font-light">
                   <span class="font-semibold">Population:</span>
