@@ -1,8 +1,8 @@
 <script lang="ts">
   import * as Select from "$lib/components/ui/select";
-  //import { error } from "@sveltejs/kit";
   let { data } = $props();
   const { countries } = $derived(data);
+  const formattedNumber = new Intl.NumberFormat("en-US");
 </script>
 
 <main class="bg-light-bg dark:bg-dark-bg px-6 py-8">
@@ -49,21 +49,36 @@ dark:bg-dark-el"
     </Select.Content>
   </Select.Root>
 
-  <div>
+  <div class="flex items-center justify-center px-12 py-10">
     {#await countries}
-      <p>Fetching Countries...</p>
+      <p class="text-center font-semibold">Fetching Countries...</p>
     {:then countries}
       <div>
         <ul>
           {#each countries as country}
-            <li>
-              <div>
-                <img src={country.flag} alt="the flag of {country.name}" />
+            <li class="bg-white shadow-xl mb-10 rounded-b-md">
+              <div class="rounded-t-md">
+                <img
+                  class="rounded-t-md"
+                  src={country.flags.svg}
+                  alt="the flag of {country.name.official}"
+                />
               </div>
-              <h2>{country.name}</h2>
-              <p>{country.population}</p>
-              <p>{country.region}</p>
-              <p>{country.capital}</p>
+              <div class="px-6 pt-6 pb-12 text-base">
+                <h2 class="font-bold text-lg mb-3">{country.name.common}</h2>
+                <p class="text-light-text font-light">
+                  <span class="font-semibold">Population:</span>
+                  {formattedNumber.format(country.population)}
+                </p>
+                <p>
+                  <span class="font-semibold">Region:</span>
+                  {country.region}
+                </p>
+                <p>
+                  <span class="font-semibold">Capital:</span>
+                  {country.capital}
+                </p>
+              </div>
             </li>
           {/each}
         </ul>
