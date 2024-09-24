@@ -12,7 +12,7 @@
     { value: "oceania", label: "Oceania" },
   ];
 
-  let region = $state(null);
+  let region = $state("");
 
   function getCountriesByRegion(e: any) {
     region = e.detail.value;
@@ -45,7 +45,7 @@
     />
   </div>
 
-  <Select.Root portal={null} on:click={getCountriesByRegion}>
+  <Select.Root portal={null} selected={region} onSelectedChange={region}>
     <Select.Trigger
       on:click={getCountriesByRegion}
       class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
