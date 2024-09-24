@@ -3,6 +3,21 @@
   let { data } = $props();
   const { countries } = $derived(data);
   const formattedNumber = new Intl.NumberFormat("en-US");
+
+  const continents = [
+    { value: "africa", label: "Africa" },
+    { value: "america", label: "America" },
+    { value: "asia", label: "Asia" },
+    { value: "europe", label: "Europe" },
+    { value: "oceania", label: "Oceania" },
+  ];
+
+  let region = $state(null);
+
+  function getCountriesByRegion(e: any) {
+    region = e.detail.value;
+    console.log(region);
+  }
 </script>
 
 <main class="bg-light-bg dark:bg-dark-bg px-6 py-8">
@@ -30,8 +45,9 @@
     />
   </div>
 
-  <Select.Root>
+  <Select.Root portal={null} on:click={getCountriesByRegion}>
     <Select.Trigger
+      on:click={getCountriesByRegion}
       class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
 dark:bg-dark-el font-semibold text-base"
     >
@@ -45,32 +61,19 @@ dark:bg-dark-el"
       class="dark:placeholder:text-white
 dark:bg-dark-el"
     >
-      <Select.Item
-        class="dark:placeholder:text-white
-dark:bg-dark-el"
-        value="africa">Africa</Select.Item
-      >
-      <Select.Item
-        class="dark:placeholder:text-white
-"
-        value="america">America</Select.Item
-      >
-      <Select.Item
-        class="dark:placeholder:text-white
-"
-        value="asia">Asia</Select.Item
-      >
-      <Select.Item
-        class="dark:placeholder:text-white
-"
-        value="europe">Europe</Select.Item
-      >
-      <Select.Item
-        class="dark:placeholder:text-white
-"
-        value="oceania">Oceania</Select.Item
-      >
+      <Select.Group>
+        <Select.Label>Regions</Select.Label>
+        {#each continents as continent}
+          <Select.Item
+            class="dark:placeholder:text-white
+          dark:bg-dark-el"
+            value={continent.value}
+            label={continent.label}>{continent.label}</Select.Item
+          >
+        {/each}
+      </Select.Group>
     </Select.Content>
+    <Select.Input name="region" bind:value={region} />
   </Select.Root>
 
   <div class="flex items-center justify-center px-12 py-10">
