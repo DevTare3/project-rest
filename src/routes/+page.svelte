@@ -4,7 +4,14 @@
   const { countries } = $derived(data);
   const formattedNumber = new Intl.NumberFormat("en-US");
 
-  const continents = [
+  type Continent = {
+    value: string;
+    label: string;
+  };
+
+  let region: Continent | undefined = undefined;
+
+  let continents: Continent[] = [
     { value: "africa", label: "Africa" },
     { value: "america", label: "America" },
     { value: "asia", label: "Asia" },
@@ -12,11 +19,14 @@
     { value: "oceania", label: "Oceania" },
   ];
 
-  let region = $state("");
+  // let region = $state("");
 
   function getCountriesByRegion(e: any) {
-    region = e.detail.value;
-    console.log(region);
+    if (e && e.value) {
+      region = e.value;
+      region = e.value;
+      console.log(region);
+    }
   }
 </script>
 
@@ -45,7 +55,11 @@
     />
   </div>
 
-  <Select.Root portal={null} selected={region} onSelectedChange={region}>
+  <Select.Root
+    portal={null}
+    onSelectedChange={getCountriesByRegion}
+    selected={region}
+  >
     <Select.Trigger
       on:click={getCountriesByRegion}
       class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
