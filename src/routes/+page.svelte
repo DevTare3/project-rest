@@ -9,7 +9,7 @@
     label: string;
   };
 
-  let region: Continent | undefined = undefined;
+  let region: Continent | undefined = $state();
 
   let continents: Continent[] = [
     { value: "africa", label: "Africa" },
@@ -19,14 +19,9 @@
     { value: "oceania", label: "Oceania" },
   ];
 
-  // let region = $state("");
-
   function getCountriesByRegion(e: any) {
-    if (e && e.value) {
-      region = e.value;
-      region = e.value;
-      console.log(region);
-    }
+    region = e.value;
+    console.log(region);
   }
 </script>
 
@@ -55,11 +50,7 @@
     />
   </div>
 
-  <Select.Root
-    portal={null}
-    onSelectedChange={getCountriesByRegion}
-    selected={region}
-  >
+  <Select.Root portal={null} onSelectedChange={getCountriesByRegion}>
     <Select.Trigger
       on:click={getCountriesByRegion}
       class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
