@@ -4,6 +4,8 @@
   const { countries } = $derived(data);
   const formattedNumber = new Intl.NumberFormat("en-US");
 
+  let inputCountry = $state("");
+
   type Continent = {
     value: string;
     label: string;
@@ -13,7 +15,7 @@
 
   let continents: Continent[] = [
     { value: "Africa", label: "Africa" },
-    { value: "America", label: "America" },
+    { value: "Americas", label: "America" },
     { value: "Asia", label: "Asia" },
     { value: "Europe", label: "Europe" },
     { value: "Oceania", label: "Oceania" },
@@ -42,6 +44,7 @@
       ><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg
     >
     <input
+      bind:value={inputCountry}
       class="outline-none font-normal dark:placeholder:text-white border-none bg-white dark:bg-dark-el text-black w-full"
       type="search"
       id="search"
@@ -49,6 +52,39 @@
     />
   </div>
 
+  <!-- {#if inputCountry !== ""} -->
+
+  {#snippet loadCountries(country)}
+  <li
+    class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
+  dark:bg-dark-el"
+  >
+    <div class="rounded-t-md">
+      <img
+        class="rounded-t-md"
+        src={country.flags.svg}
+        alt="the flag of {country.name.official}"
+      />
+    </div>
+    <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
+      <h2 class="font-bold text-lg mb-3">{country.name.common}</h2>
+      <p class="text-light-text font-light">
+        <span class="font-semibold">Population:</span>
+        {formattedNumber.format(country.population)}
+      </p>
+      <p>
+        <span class="font-semibold">Region:</span>
+        {country.region}
+      </p>
+      <p>
+        <span class="font-semibold">Capital:</span>
+        {country.capital}
+      </p>
+    </div>
+  </li>
+  {/snippet}
+
+  
   <Select.Root portal={null} onSelectedChange={getCountriesByRegion}>
     <Select.Trigger
       class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
@@ -76,7 +112,7 @@ dark:bg-dark-el"
         {/each}
       </Select.Group>
     </Select.Content>
-    <Select.Input name="region" bind:value={region} />
+    <Select.Input name="region" />
   </Select.Root>
 
   <div class="flex items-center justify-center px-12 py-10">
@@ -86,35 +122,9 @@ dark:bg-dark-el"
       <div>
         <ul>
           {#if region === undefined}
-            {#each countries as country}
-              <li
-                class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
-              dark:bg-dark-el"
-              >
-                <div class="rounded-t-md">
-                  <img
-                    class="rounded-t-md"
-                    src={country.flags.svg}
-                    alt="the flag of {country.name.official}"
-                  />
-                </div>
-                <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
-                  <h2 class="font-bold text-lg mb-3">{country.name.common}</h2>
-                  <p class="text-light-text font-light">
-                    <span class="font-semibold">Population:</span>
-                    {formattedNumber.format(country.population)}
-                  </p>
-                  <p>
-                    <span class="font-semibold">Region:</span>
-                    {country.region}
-                  </p>
-                  <p>
-                    <span class="font-semibold">Capital:</span>
-                    {country.capital}
-                  </p>
-                </div>
-              </li>
-            {/each}
+           {#each countries as country}
+           {@render loadCountries(country)}
+           {/each}
           {/if}
 
           {#if region !== undefined}
