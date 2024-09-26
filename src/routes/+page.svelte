@@ -12,16 +12,15 @@
   let region: Continent | undefined = $state();
 
   let continents: Continent[] = [
-    { value: "africa", label: "Africa" },
-    { value: "america", label: "America" },
-    { value: "asia", label: "Asia" },
-    { value: "europe", label: "Europe" },
-    { value: "oceania", label: "Oceania" },
+    { value: "Africa", label: "Africa" },
+    { value: "America", label: "America" },
+    { value: "Asia", label: "Asia" },
+    { value: "Europe", label: "Europe" },
+    { value: "Oceania", label: "Oceania" },
   ];
 
   function getCountriesByRegion(e: any) {
     region = e.value;
-    console.log(region);
   }
 </script>
 
@@ -52,7 +51,6 @@
 
   <Select.Root portal={null} onSelectedChange={getCountriesByRegion}>
     <Select.Trigger
-      on:click={getCountriesByRegion}
       class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
 dark:bg-dark-el font-semibold text-base"
     >
@@ -87,35 +85,73 @@ dark:bg-dark-el"
     {:then countries}
       <div>
         <ul>
-          {#each countries as country}
-            <li
-              class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
-dark:bg-dark-el"
-            >
-              <div class="rounded-t-md">
-                <img
-                  class="rounded-t-md"
-                  src={country.flags.svg}
-                  alt="the flag of {country.name.official}"
-                />
-              </div>
-              <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
-                <h2 class="font-bold text-lg mb-3">{country.name.common}</h2>
-                <p class="text-light-text font-light">
-                  <span class="font-semibold">Population:</span>
-                  {formattedNumber.format(country.population)}
-                </p>
-                <p>
-                  <span class="font-semibold">Region:</span>
-                  {country.region}
-                </p>
-                <p>
-                  <span class="font-semibold">Capital:</span>
-                  {country.capital}
-                </p>
-              </div>
-            </li>
-          {/each}
+          {#if region === undefined}
+            {#each countries as country}
+              <li
+                class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
+              dark:bg-dark-el"
+              >
+                <div class="rounded-t-md">
+                  <img
+                    class="rounded-t-md"
+                    src={country.flags.svg}
+                    alt="the flag of {country.name.official}"
+                  />
+                </div>
+                <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
+                  <h2 class="font-bold text-lg mb-3">{country.name.common}</h2>
+                  <p class="text-light-text font-light">
+                    <span class="font-semibold">Population:</span>
+                    {formattedNumber.format(country.population)}
+                  </p>
+                  <p>
+                    <span class="font-semibold">Region:</span>
+                    {country.region}
+                  </p>
+                  <p>
+                    <span class="font-semibold">Capital:</span>
+                    {country.capital}
+                  </p>
+                </div>
+              </li>
+            {/each}
+          {/if}
+
+          {#if region !== undefined}
+            {#each countries as country}
+              {#if country.region === region}
+                <li
+                  class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
+              dark:bg-dark-el"
+                >
+                  <div class="rounded-t-md">
+                    <img
+                      class="rounded-t-md"
+                      src={country.flags.svg}
+                      alt="the flag of {country.name.official}"
+                    />
+                  </div>
+                  <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
+                    <h2 class="font-bold text-lg mb-3">
+                      {country.name.common}
+                    </h2>
+                    <p class="text-light-text font-light">
+                      <span class="font-semibold">Population:</span>
+                      {formattedNumber.format(country.population)}
+                    </p>
+                    <p>
+                      <span class="font-semibold">Region:</span>
+                      {country.region}
+                    </p>
+                    <p>
+                      <span class="font-semibold">Capital:</span>
+                      {country.capital}
+                    </p>
+                  </div>
+                </li>
+              {/if}
+            {/each}
+          {/if}
         </ul>
       </div>
     {/await}
