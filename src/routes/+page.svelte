@@ -52,7 +52,6 @@
     />
   </div>
 
-  <!-- {#if inputCountry !== ""} -->
 
   {#snippet loadCountries(country)}
   <li
@@ -121,46 +120,26 @@ dark:bg-dark-el"
     {:then countries}
       <div>
         <ul>
+          {#if inputCountry !== ""}
+          {#each countries as country}
+            {#if country.name.common === inputCountry}
+              {@render loadCountries(country)}
+            {/if}
+          {/each}
+          {:else}
           {#if region === undefined}
            {#each countries as country}
            {@render loadCountries(country)}
            {/each}
-          {/if}
 
-          {#if region !== undefined}
-            {#each countries as country}
-              {#if country.region === region}
-                <li
-                  class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
-              dark:bg-dark-el"
-                >
-                  <div class="rounded-t-md">
-                    <img
-                      class="rounded-t-md"
-                      src={country.flags.svg}
-                      alt="the flag of {country.name.official}"
-                    />
-                  </div>
-                  <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
-                    <h2 class="font-bold text-lg mb-3">
-                      {country.name.common}
-                    </h2>
-                    <p class="text-light-text font-light">
-                      <span class="font-semibold">Population:</span>
-                      {formattedNumber.format(country.population)}
-                    </p>
-                    <p>
-                      <span class="font-semibold">Region:</span>
-                      {country.region}
-                    </p>
-                    <p>
-                      <span class="font-semibold">Capital:</span>
-                      {country.capital}
-                    </p>
-                  </div>
-                </li>
-              {/if}
-            {/each}
+          {:else}
+          
+          {#each countries as country}
+            {#if country.region === region}
+              {@render loadCountries(country)}
+            {/if}
+          {/each}
+          {/if}
           {/if}
         </ul>
       </div>
