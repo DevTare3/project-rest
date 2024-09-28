@@ -24,6 +24,28 @@
   function getCountriesByRegion(e: any) {
     region = e.value;
   }
+
+
+  function countrySearch()
+  {
+    let filter,ul ,li,txtValue,a;
+    filter = inputCountry.toUpperCase();
+    ul = document.getElementById("countryList");
+    li = ul.getElementsByTagName('li')
+    console.log(filter);
+    for(let i = 0; i < li.length; i++)
+  {
+    a = li[i].getElementsByTagName("h2")[0];
+    txtValue = a.textContent || a.innerText;
+    if(txtValue.toUpperCase().indexOf(filter) > -1)
+  {
+    console.log(txtValue.toUpperCase())
+    li[i].style.display = "";
+  } else {
+    li[i].style.display = "none";
+  }
+  }
+  }
 </script>
 
 <main class="bg-light-bg dark:bg-dark-bg px-6 py-8">
@@ -44,7 +66,7 @@
       ><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg
     >
     <input
-      bind:value={inputCountry}
+      bind:value={inputCountry} oninput={countrySearch}
       class="outline-none font-normal dark:placeholder:text-white border-none bg-white dark:bg-dark-el text-black w-full"
       type="search"
       id="search"
@@ -58,29 +80,32 @@
     class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
   dark:bg-dark-el"
   >
-    <div class="rounded-t-md">
-      <img
-        class="rounded-t-md"
-        src={country.flags.svg}
-        alt="the flag of {country.name.official}"
-      />
-    </div>
-    <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
-      <h2 class="font-bold text-lg mb-3">{country.name.common}</h2>
-      <p class="text-light-text font-light">
-        <span class="font-semibold">Population:</span>
-        {formattedNumber.format(country.population)}
-      </p>
-      <p>
-        <span class="font-semibold">Region:</span>
-        {country.region}
-      </p>
-      <p>
-        <span class="font-semibold">Capital:</span>
-        {country.capital}
-      </p>
-    </div>
-  </li>
+  <a href="/detailed">
+    
+      <div class="rounded-t-md">
+        <img
+          class="rounded-t-md"
+          src={country.flags.svg}
+          alt="the flag of {country.name.official}"
+        />
+      </div>
+      <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
+        <h2 class="font-bold text-lg mb-3 searchName">{country.name.common}</h2>
+        <p class="text-light-text font-light">
+          <span class="font-semibold">Population:</span>
+          {formattedNumber.format(country.population)}
+        </p>
+        <p>
+          <span class="font-semibold">Region:</span>
+          {country.region}
+        </p>
+        <p>
+          <span class="font-semibold">Capital:</span>
+          {country.capital}
+        </p>
+      </div>
+    
+  </a></li>
   {/snippet}
 
   
@@ -119,28 +144,10 @@ dark:bg-dark-el"
       <p class="text-center font-semibold">Fetching Countries...</p>
     {:then countries}
       <div>
-        <ul>
-          {#if inputCountry !== ""}
+        <ul id ="countryList">
           {#each countries as country}
-            {#if country.name.common === inputCountry}
               {@render loadCountries(country)}
-            {/if}
           {/each}
-          {:else}
-          {#if region === undefined}
-           {#each countries as country}
-           {@render loadCountries(country)}
-           {/each}
-
-          {:else}
-          
-          {#each countries as country}
-            {#if country.region === region}
-              {@render loadCountries(country)}
-            {/if}
-          {/each}
-          {/if}
-          {/if}
         </ul>
       </div>
     {/await}
