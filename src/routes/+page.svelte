@@ -11,6 +11,7 @@
     label: string;
   };
 
+
   let region: Continent | undefined = $state();
 
   let continents: Continent[] = [
@@ -20,6 +21,19 @@
     { value: "Europe", label: "Europe" },
     { value: "Oceania", label: "Oceania" },
   ];
+
+  interface Country {
+    flags: {
+      svg:string;
+    };
+    name: {
+      common: string;
+      official:string;
+    }
+    region: string;
+    capital: string;
+    population: number;
+  }
 
   function getCountriesByRegion(e: any) {
     region = e.value;
@@ -31,21 +45,25 @@
     let filter,ul ,li,txtValue,a;
     filter = inputCountry.toUpperCase();
     ul = document.getElementById("countryList");
+    if(ul)
+  {
     li = ul.getElementsByTagName('li')
-    console.log(filter);
+  
     for(let i = 0; i < li.length; i++)
   {
     a = li[i].getElementsByTagName("h2")[0];
     txtValue = a.textContent || a.innerText;
     if(txtValue.toUpperCase().indexOf(filter) > -1)
   {
-    console.log(txtValue.toUpperCase())
     li[i].style.display = "";
   } else {
     li[i].style.display = "none";
   }
   }
   }
+  }
+
+
 </script>
 
 <main class="bg-light-bg dark:bg-dark-bg px-6 py-8">
@@ -75,7 +93,7 @@
   </div>
 
 
-  {#snippet loadCountries(country)}
+  {#snippet loadCountries(country : Country)}
   <li
     class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
   dark:bg-dark-el"
