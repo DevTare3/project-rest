@@ -9,10 +9,10 @@
 <header>
   <nav>
     <div
-      class="bg-white dark:bg-dark-el flex items-center justify-between py-8 px-4 shadow-2xl"
+      class="bg-white dark:bg-dark-el flex items-center justify-between py-8 px-4 shadow-md"
     >
       <p
-        class="text-light-text text-lg font-extrabold dark:text-white"
+        class="text-light-text text-lg font-bold dark:text-white"
       >
         Where in the world?
       </p>
@@ -35,5 +35,6 @@
     </div>
   </nav>
 </header>
-
-{@render children()}
+<main>
+  {@render children()}
+</main>

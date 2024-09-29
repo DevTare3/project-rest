@@ -66,7 +66,7 @@
 
 </script>
 
-<main class="bg-light-bg dark:bg-dark-bg px-6 py-8">
+<div class="bg-light-bg dark:bg-dark-bg px-6 py-8">
   <div
     class="flex items-center shadow-xl dark:outline dark:outline-[.8rem] dark:outline-outline-dark justify-center gap-6 py-5 px-8 mb-8 rounded-md bg-white dark:bg-dark-el"
   >
@@ -170,4 +170,4 @@ dark:bg-dark-el"
       </div>
     {/await}
   </div>
-</main>
+</div>
