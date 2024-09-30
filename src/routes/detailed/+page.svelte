@@ -9,6 +9,7 @@
 {#snippet sameButton()}
 {/snippet}
 
+<p>{countries[0].name.common}</p>
 
 <div class="px-6 py-8">
   <Button
@@ -28,7 +29,7 @@
       class="lucide mr-2 lucide-arrow-left"
       ><path d="m12 19-7-7 7-7" /><path d="M19 12H5" />
     </svg>
-    Back</Button
+    Back fix</Button
   >
   <div>
     <div>
