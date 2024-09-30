@@ -12,6 +12,7 @@
     class="rounded-sm bg-white text-light-text hover:bg-slate-200 shadow-lg font-light px-6  mt-0 mb-0 text-sm"
     href="./"
   >
+    {data[0].name.common}
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
