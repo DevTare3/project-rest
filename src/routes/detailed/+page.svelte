@@ -1,15 +1,11 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import { Button } from "$lib/components/ui/button";
-  import type {PageData} from "./$types";
-
+  import type { PageData } from "./$types";
   export let data: PageData;
+  import { Button } from "$lib/components/ui/button";
 </script>
 
-{#snippet sameButton()}
-{/snippet}
-
-<p>{countries[0].name.common}</p>
+<!-- {#snippet sameButton()}
+{/snippet} -->
 
 <div class="px-6 py-8">
   <Button
@@ -29,13 +25,11 @@
       class="lucide mr-2 lucide-arrow-left"
       ><path d="m12 19-7-7 7-7" /><path d="M19 12H5" />
     </svg>
-    Back fix</Button
-  >
+    Back
+  </Button>
   <div>
     <div>
-        <div>
-
-        </div>
+      <div></div>
     </div>
   </div>
 </div>
