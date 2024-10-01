@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  export let data: PageData;
+  let { data } = $props();
+  const { countries } = $derived(data);
   import { Button } from "$lib/components/ui/button";
 </script>
 
@@ -12,7 +13,11 @@
     class="rounded-sm bg-white text-light-text hover:bg-slate-200 shadow-lg font-light px-6  mt-0 mb-0 text-sm"
     href="./"
   >
-    {data[0].name.common}
+    {#if countries}
+      {#each countries as country}
+        {country.name.common}
+      {/each}
+    {/if}
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
