@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
   let { data } = $props();
   const { countries } = $derived(data);
   import { Button } from "$lib/components/ui/button";
@@ -13,11 +12,6 @@
     class="rounded-sm bg-white text-light-text hover:bg-slate-200 shadow-lg font-light px-6  mt-0 mb-0 text-sm"
     href="./"
   >
-    {#if countries}
-      {#each countries as country}
-        {country.name.common}
-      {/each}
-    {/if}
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
@@ -34,8 +28,10 @@
     Back
   </Button>
   <div>
-    <div>
+    {#await countries}
+      <p class="text-center font-semibold">Fetching Country Info...</p>
+    {:then countries}
       <div></div>
-    </div>
+    {/await}
   </div>
 </div>
