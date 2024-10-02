@@ -32,11 +32,23 @@
     {#await country}
       <p class="text-center font-semibold">Fetching Country Info...</p>
     {:then country}
-      <div></div>
-      {#each country as item}
-        {item.name.common}
-        {item.population}
-      {/each}
+      <div>
+        {#each country as item}
+          <div>
+            <img src={item.flags.svg} alt="The flag of {item.name.official}" />
+          </div>
+          <h1>{item.name.common}</h1>
+
+          <p>{item.name.native}</p>
+          <p>{item.population}</p>
+          <p>{item.region}</p>
+          <p>{item.subregion}</p>
+          <p>{item.capital}</p>
+          <p>{item.tld}</p>
+          <p>{item.currencies}</p>
+          <p>{item.languages}</p>
+        {/each}
+      </div>
     {/await}
   </div>
 </div>
