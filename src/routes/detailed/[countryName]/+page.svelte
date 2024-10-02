@@ -35,6 +35,7 @@
       <div></div>
       {#each country as item}
         {item.name.common}
+        {item.population}
       {/each}
     {/await}
   </div>
