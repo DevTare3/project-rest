@@ -1,7 +1,6 @@
 <script lang="ts">
   import * as Select from "$lib/components/ui/select";
 
-  
 
   let { data } = $props();
   const { countries } = $derived(data);
@@ -42,10 +41,7 @@
   }
 
 
-  function getCountry(e : any) {
-    
-    e.document.tog
-  }
+
   
 
   function countrySearch()
@@ -106,36 +102,34 @@
   class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
   dark:bg-dark-el"
   >
-  <button class="border-none p-0 m-0 text-left block" onclick={getCountry}>
-    <a href="/detailed">
+  <a href="/detailed/{country.name.official}">
+    <button class="border-none p-0 m-0 text-left block">
+          <div class="rounded-t-md">
+            <img
+              class="rounded-t-md"
+              src={country.flags.svg}
+              alt="the flag of {country.name.official}"
+            />
+          </div>
+          <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
+            <h2 class="font-bold text-lg mb-3 searchName">{country.name.common}</h2>
+            <p class="text-light-text font-light">
+              <span class="font-semibold">Population:</span>
+              {formattedNumber.format(country.population)}
+            </p>
+            <p>
+              <span class="font-semibold">Region:</span>
+              {country.region}
+            </p>
+            <p>
+              <span class="font-semibold">Capital:</span>
+              {country.capital}
+            </p>
+          </div>
     
-        <div class="rounded-t-md">
-          <img
-            class="rounded-t-md"
-            src={country.flags.svg}
-            alt="the flag of {country.name.official}"
-          />
-        </div>
-        <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
-          <h2 class="font-bold text-lg mb-3 searchName">{country.name.common}</h2>
-          <p class="text-light-text font-light">
-            <span class="font-semibold">Population:</span>
-            {formattedNumber.format(country.population)}
-          </p>
-          <p>
-            <span class="font-semibold">Region:</span>
-            {country.region}
-          </p>
-          <p>
-            <span class="font-semibold">Capital:</span>
-            {country.capital}
-          </p>
-        </div>
+          </button>
     
-
-      </a>
-        </button>
-    </li>
+  </a>  </li>
   {/snippet}
 
   

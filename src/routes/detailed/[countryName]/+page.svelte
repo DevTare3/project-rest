@@ -1,6 +1,7 @@
 <script lang="ts">
   let { data } = $props();
-  const { countries } = $derived(data);
+  const { country } = $derived(data);
+  console.log(data);
   import { Button } from "$lib/components/ui/button";
 </script>
 
@@ -28,10 +29,13 @@
     Back
   </Button>
   <div>
-    {#await countries}
+    {#await country}
       <p class="text-center font-semibold">Fetching Country Info...</p>
-    {:then countries}
+    {:then country}
       <div></div>
+      {#each country as item}
+        {item.name.common}
+      {/each}
     {/await}
   </div>
 </div>
