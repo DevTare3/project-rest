@@ -1,5 +1,8 @@
 <script lang="ts">
   import * as Select from "$lib/components/ui/select";
+
+  
+
   let { data } = $props();
   const { countries } = $derived(data);
   const formattedNumber = new Intl.NumberFormat("en-US");
@@ -11,6 +14,8 @@
     label: string;
   };
 
+
+  let selectedCountry = $state("")
 
   let region: Continent | undefined = $state();
 
@@ -33,12 +38,15 @@
     region: string;
     capital: string;
     population: number;
+    cca3: string;
   }
 
-  function getCountriesByRegion(e: any) {
-    region = e.value;
-  }
 
+  function getCountry(e : any) {
+    
+    e.document.tog
+  }
+  
 
   function countrySearch()
   {
@@ -94,7 +102,7 @@
 
 
   {#snippet loadCountries(country : Country)}
-  <li
+  <li onclick={getCountry} id = "item"
     class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
   dark:bg-dark-el"
   >
@@ -127,7 +135,7 @@
   {/snippet}
 
   
-  <Select.Root portal={null} onSelectedChange={getCountriesByRegion}>
+  <Select.Root portal={null} >
     <Select.Trigger
       class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
 dark:bg-dark-el font-semibold text-base"
