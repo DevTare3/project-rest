@@ -102,36 +102,40 @@
 
 
   {#snippet loadCountries(country : Country)}
-  <li onclick={getCountry} id = "item"
-    class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
+  <li  id = "item"
+  class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
   dark:bg-dark-el"
   >
-  <a href="/detailed">
+  <button class="border-none p-0 m-0 text-left block" onclick={getCountry}>
+    <a href="/detailed">
     
-      <div class="rounded-t-md">
-        <img
-          class="rounded-t-md"
-          src={country.flags.svg}
-          alt="the flag of {country.name.official}"
-        />
-      </div>
-      <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
-        <h2 class="font-bold text-lg mb-3 searchName">{country.name.common}</h2>
-        <p class="text-light-text font-light">
-          <span class="font-semibold">Population:</span>
-          {formattedNumber.format(country.population)}
-        </p>
-        <p>
-          <span class="font-semibold">Region:</span>
-          {country.region}
-        </p>
-        <p>
-          <span class="font-semibold">Capital:</span>
-          {country.capital}
-        </p>
-      </div>
+        <div class="rounded-t-md">
+          <img
+            class="rounded-t-md"
+            src={country.flags.svg}
+            alt="the flag of {country.name.official}"
+          />
+        </div>
+        <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
+          <h2 class="font-bold text-lg mb-3 searchName">{country.name.common}</h2>
+          <p class="text-light-text font-light">
+            <span class="font-semibold">Population:</span>
+            {formattedNumber.format(country.population)}
+          </p>
+          <p>
+            <span class="font-semibold">Region:</span>
+            {country.region}
+          </p>
+          <p>
+            <span class="font-semibold">Capital:</span>
+            {country.capital}
+          </p>
+        </div>
     
-  </a></li>
+
+      </a>
+        </button>
+    </li>
   {/snippet}
 
   
