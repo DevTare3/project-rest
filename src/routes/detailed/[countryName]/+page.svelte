@@ -45,8 +45,8 @@
           <p>{item.subregion}</p>
           <p>{item.capital}</p>
           <p>{item.tld}</p>
-          <p>{item.currencies}</p>
-          <p>{item.languages}</p>
+          <p>{item.currencies[Object.keys(item.currencies)].name}</p>
+          <p>{item.languages[Object.keys(item.languages)]}</p>
         {/each}
       </div>
     {/await}

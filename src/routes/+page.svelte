@@ -38,6 +38,10 @@
     capital: string;
     population: number;
     cca3: string;
+    currencies: {
+      name: string;
+      symbol:string;
+    }
   }
 
 
@@ -102,7 +106,7 @@
   class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
   dark:bg-dark-el"
   >
-  <a href="/detailed/{country.name.official}">
+  <a href="/detailed/{country.name.official}" data-sveltekit-preload-data>
     <button class="border-none p-0 m-0 text-left block">
           <div class="rounded-t-md">
             <img
@@ -124,6 +128,9 @@
             <p>
               <span class="font-semibold">Capital:</span>
               {country.capital}
+            </p>
+            <p>
+             BITNOOO {country.currencies.name}
             </p>
           </div>
     
