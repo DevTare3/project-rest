@@ -129,11 +129,7 @@
               <span class="font-semibold">Capital:</span>
               {country.capital}
             </p>
-            <p>
-             BITNOOO {country.currencies.name}
-            </p>
           </div>
-    
           </button>
     
   </a>  </li>

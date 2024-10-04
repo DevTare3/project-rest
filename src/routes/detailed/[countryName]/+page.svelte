@@ -46,7 +46,7 @@
           <p>{item.capital}</p>
           <p>{item.tld}</p>
           <p>{item.currencies[Object.keys(item.currencies)].name}</p>
-          <p>{item.languages[Object.keys(item.languages)]}</p>
+          <p>{Object.values(item.languages)}</p>
         {/each}
       </div>
     {/await}
