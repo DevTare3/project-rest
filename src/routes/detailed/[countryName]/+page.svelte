@@ -34,10 +34,12 @@
     {:then country}
       <div>
         {#each country as item}
-          <div>
+          <div class="mt-12 mb-8">
             <img src={item.flags.svg} alt="The flag of {item.name.official}" />
           </div>
-          <h1>{item.name.common}</h1>
+          <h1 class="text-lg font-bold mb-4">
+            {item.name.nativeName}
+          </h1>
 
           <p>{item.name.native}</p>
           <p>{item.population.toLocaleString("en-US")}</p>
