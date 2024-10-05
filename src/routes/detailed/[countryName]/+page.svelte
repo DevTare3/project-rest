@@ -40,13 +40,22 @@
           <h1>{item.name.common}</h1>
 
           <p>{item.name.native}</p>
-          <p>{item.population}</p>
+          <p>{item.population.toLocaleString("en-US")}</p>
           <p>{item.region}</p>
           <p>{item.subregion}</p>
           <p>{item.capital}</p>
           <p>{item.tld}</p>
           <p>{item.currencies[Object.keys(item.currencies)].name}</p>
-          <p>{item.languages[Object.keys(item.languages)]}</p>
+          <p>{Object.values(item.languages).join(",")}</p>
+          <p>{item.car.side}</p>
+          <p>
+            Landlocked:
+            {#if item.landlocked}
+              Yes
+            {:else}
+              No
+            {/if}
+          </p>
         {/each}
       </div>
     {/await}

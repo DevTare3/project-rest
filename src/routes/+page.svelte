@@ -4,7 +4,6 @@
 
   let { data } = $props();
   const { countries } = $derived(data);
-  const formattedNumber = new Intl.NumberFormat("en-US");
 
   let inputCountry = $state("");
 
@@ -119,7 +118,7 @@
             <h2 class="font-bold text-lg mb-3 searchName">{country.name.common}</h2>
             <p class="text-light-text font-light">
               <span class="font-semibold">Population:</span>
-              {formattedNumber.format(country.population)}
+              {country.population.toLocaleString("en-US")}
             </p>
             <p>
               <span class="font-semibold">Region:</span>
@@ -128,9 +127,6 @@
             <p>
               <span class="font-semibold">Capital:</span>
               {country.capital}
-            </p>
-            <p>
-             BITNOOO {country.currencies.name}
             </p>
           </div>
     
