@@ -34,19 +34,30 @@
     {:then country}
       <div>
         {#each country as item}
-          <div>
+          <div class="mt-12 mb-8">
             <img src={item.flags.svg} alt="The flag of {item.name.official}" />
           </div>
-          <h1>{item.name.common}</h1>
+          <h1 class="text-lg font-bold mb-4">
+            {item.name.nativeName}
+          </h1>
 
           <p>{item.name.native}</p>
-          <p>{item.population}</p>
+          <p>{item.population.toLocaleString("en-US")}</p>
           <p>{item.region}</p>
           <p>{item.subregion}</p>
           <p>{item.capital}</p>
           <p>{item.tld}</p>
           <p>{item.currencies[Object.keys(item.currencies)].name}</p>
-          <p>{Object.values(item.languages)}</p>
+          <p>{Object.values(item.languages).join(",")}</p>
+          <p>{item.car.side}</p>
+          <p>
+            Landlocked:
+            {#if item.landlocked}
+              Yes
+            {:else}
+              No
+            {/if}
+          </p>
         {/each}
       </div>
     {/await}
