@@ -5,11 +5,10 @@
   import { Button } from "$lib/components/ui/button";
 </script>
 
- {#snippet sameButton(item)}
+ <!-- {#snippet sameButton(item)}
    <Button href="/detailed/{item.name.official}">{Object.values(item.borders)}</Button>
    {/each}
-{/snippet} 
-
+{/snippet}  -->
 
 {#snippet countryInfo(item)}
 <div class="mt-12 mb-8">
@@ -19,8 +18,9 @@
   {item.name.common}
 </h1>
 <div class="mb-8">
-  
-  <p class="mb-2"><span class="font-semibold text-base">Native Name: </span> {item.name.native}</p>
+  {#if item.name.nativeName}
+  <p class="mb-2"><span class="font-semibold text-base">Native Name: </span> {item.name.nativeName[Object.keys(item.name.nativeName)[0]].common}</p>
+  {/if}
   <p class="mb-2">
     <span class="font-semibold text-base">Population: </span>
     {item.population.toLocaleString("en-US")}
@@ -30,14 +30,18 @@
   <p class="mb-2"><span class="font-semibold text-base">Capital: </span> {item.capital}</p>
 </div>
 <p class="mb-2"><span class="font-semibold text-base">Top Level Domain: </span> {item.tld}</p>
+{#if item.currencies }
 <p class="mb-2">
   <span class="font-semibold text-base">Currencies: </span>
-  {item.currencies[Object.keys(item.currencies)].name}
+  {item.currencies[Object.keys(item.currencies)[0]].name}
 </p>
+{/if}
+{#if item.languages}
 <p class="mb-2">
   <span class="font-semibold text-base">Languages: </span>
   {Object.values(item.languages).join(" ,")}
 </p>
+{/if}
 <p class="mb-2"><span class="font-semibold text-base">Driving Side:</span> {item.car.side}</p>
 <p class="mb-8">
   <span class="font-semibold text-base">Landlocked: </span>
@@ -76,7 +80,7 @@
       <div>
         {#each country as item}
           {@render countryInfo(item)}
-          {@render sameButton(item)}
+          
         {/each}
       </div>
     {/await}
