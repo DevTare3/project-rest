@@ -5,8 +5,49 @@
   import { Button } from "$lib/components/ui/button";
 </script>
 
-<!-- {#snippet sameButton()}
-{/snippet} -->
+ {#snippet sameButton(item)}
+   <Button href="/detailed/{item.name.official}">{Object.values(item.borders)}</Button>
+   {/each}
+{/snippet} 
+
+
+{#snippet countryInfo(item)}
+<div class="mt-12 mb-8">
+  <img src={item.flags.svg} alt="The flag of {item.name.official}" />
+</div>
+<h1 class="text-lg font-bold mb-4">
+  {item.name.common}
+</h1>
+<div class="mb-8">
+  
+  <p class="mb-2"><span class="font-semibold text-base">Native Name: </span> {item.name.native}</p>
+  <p class="mb-2">
+    <span class="font-semibold text-base">Population: </span>
+    {item.population.toLocaleString("en-US")}
+  </p>
+  <p class="mb-2"><span class="font-semibold text-base">Region: </span> {item.region}</p>
+  <p class="mb-2"><span class="font-semibold text-base">Sub Region: </span> {item.subregion}</p>
+  <p class="mb-2"><span class="font-semibold text-base">Capital: </span> {item.capital}</p>
+</div>
+<p class="mb-2"><span class="font-semibold text-base">Top Level Domain: </span> {item.tld}</p>
+<p class="mb-2">
+  <span class="font-semibold text-base">Currencies: </span>
+  {item.currencies[Object.keys(item.currencies)].name}
+</p>
+<p class="mb-2">
+  <span class="font-semibold text-base">Languages: </span>
+  {Object.values(item.languages).join(" ,")}
+</p>
+<p class="mb-2"><span class="font-semibold text-base">Driving Side:</span> {item.car.side}</p>
+<p class="mb-8">
+  <span class="font-semibold text-base">Landlocked: </span>
+  {#if item.landlocked}
+    Yes
+  {:else}
+    No
+  {/if}
+</p>
+{/snippet}
 
 <div class="px-6 py-8">
   <Button
@@ -34,30 +75,8 @@
     {:then country}
       <div>
         {#each country as item}
-          <div class="mt-12 mb-8">
-            <img src={item.flags.svg} alt="The flag of {item.name.official}" />
-          </div>
-          <h1 class="text-lg font-bold mb-4">
-            {item.name.nativeName}
-          </h1>
-
-          <p>{item.name.native}</p>
-          <p>{item.population.toLocaleString("en-US")}</p>
-          <p>{item.region}</p>
-          <p>{item.subregion}</p>
-          <p>{item.capital}</p>
-          <p>{item.tld}</p>
-          <p>{item.currencies[Object.keys(item.currencies)].name}</p>
-          <p>{Object.values(item.languages).join(",")}</p>
-          <p>{item.car.side}</p>
-          <p>
-            Landlocked:
-            {#if item.landlocked}
-              Yes
-            {:else}
-              No
-            {/if}
-          </p>
+          {@render countryInfo(item)}
+          {@render sameButton(item)}
         {/each}
       </div>
     {/await}
