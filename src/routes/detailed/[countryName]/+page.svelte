@@ -5,12 +5,9 @@
   import { Button } from "$lib/components/ui/button";
 </script>
 
- <!-- {#snippet sameButton(item)}
-   <Button href="/detailed/{item.name.official}">{Object.values(item.borders)}</Button>
-   {/each}
-{/snippet}  -->
 
 {#snippet countryInfo(item)}
+{#if item}
 <div class="mt-12 mb-8">
   <img src={item.flags.svg} alt="The flag of {item.name.official}" />
 </div>
@@ -39,7 +36,7 @@
 {#if item.languages}
 <p class="mb-2">
   <span class="font-semibold text-base">Languages: </span>
-  {Object.values(item.languages).join(" ,")}
+  {Object.values(item.languages).join(", ")}
 </p>
 {/if}
 <p class="mb-2"><span class="font-semibold text-base">Driving Side:</span> {item.car.side}</p>
@@ -51,6 +48,7 @@
     No
   {/if}
 </p>
+{/if}
 {/snippet}
 
 <div class="px-6 py-8">
@@ -80,7 +78,15 @@
       <div>
         {#each country as item}
           {@render countryInfo(item)}
-          
+          <p class="font-semibold">Border Countries:</p>
+          <p>{#if item.borders}
+            {#each item.borders as border}
+              <Button href='/detailed/{border}'>{border}</Button>
+            {/each}
+            {:else}
+            No Border Countries
+          {/if}</p>
+         
         {/each}
       </div>
     {/await}
