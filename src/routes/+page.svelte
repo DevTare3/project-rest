@@ -105,7 +105,7 @@
   class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
   dark:bg-dark-el"
   >
-  <a href="/detailed/{country.name.official}" data-sveltekit-preload-data>
+  <a href="/detailed/{country.cca3}" data-sveltekit-preload-data>
     <button class="border-none p-0 m-0 text-left block">
           <div class="rounded-t-md">
             <img
