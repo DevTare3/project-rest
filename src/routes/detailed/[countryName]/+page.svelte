@@ -1,7 +1,7 @@
 <script lang="ts">
   let { data } = $props();
   const { country } = $derived(data);
-  const {borderCountries} = $derived(data);
+  const { borderCountries } = $derived(data);
   console.log(data);
   import { Button } from "$lib/components/ui/button";
 </script>
@@ -82,7 +82,11 @@
           <p class="font-semibold">Border Countries:</p>
           <p>{#if item.borders}
             {#each item.borders as border}
-              <Button href='/detailed/{border}'>{border}</Button>
+              <Button href='/detailed/{border}'>
+              {borderCountries.forEach((borderCountry) => {
+                
+              })}
+            </Button>
             {/each}
             {:else}
             No Border Countries
