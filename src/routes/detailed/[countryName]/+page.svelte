@@ -81,13 +81,11 @@
           {@render countryInfo(item)}
           <p class="font-semibold">Border Countries:</p>
           <p>{#if item.borders}
-            {#each item.borders as border}
-              <Button href='/detailed/{border}'>
-              {borderCountries.forEach((borderCountry) => {
-                
-              })}
+            {#each borderCountries as borderCountry}
+            <Button href='/detailed/{borderCountry.cca3}'>
+              {borderCountry.name}
             </Button>
-            {/each}
+              {/each}
             {:else}
             No Border Countries
           {/if}</p>
