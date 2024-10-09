@@ -5,7 +5,7 @@ export const load = ({ fetch, params }: any) => {
     );
     const data = (await res.json()) as any;
     let borderCountries: any[] = [];
-    if (data.borders) {
+    if (data.length > 0 && data[0].borders) { 
       console.log("in borders");
       const fetchBorderCountries = async (borderCountryID: any) => {
         const res = await fetch(
@@ -13,10 +13,14 @@ export const load = ({ fetch, params }: any) => {
         );
         const borderCountryData = await res.json();
         console.log("here it is" + borderCountryData);
-        return borderCountryData;
+        debugger;
+        return {
+          name: borderCountryData.name,
+          cca3: borderCountryData.cca3,
+        };
       };
       borderCountries = await Promise.all(
-        data.borders.map((element: any) => fetchBorderCountries(element.cca3))
+        data[0].borders.map((element: any) => fetchBorderCountries(element))
       );
     }
     return {
