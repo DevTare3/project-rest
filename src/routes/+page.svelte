@@ -12,9 +12,6 @@
     label: string;
   };
 
-
-  let selectedCountry = $state("")
-
   let region: Continent | undefined = $state();
 
   let continents: Continent[] = [
@@ -135,8 +132,8 @@
   {/snippet}
 
   
-  <Select.Root portal={null} >
-    <Select.Trigger
+  <Select.Root portal={null} bind:selected={region} >
+    <Select.Trigger 
       class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
 dark:bg-dark-el font-semibold text-base"
     >
@@ -153,11 +150,12 @@ dark:bg-dark-el"
       <Select.Group>
         <Select.Label>Regions</Select.Label>
         {#each continents as continent}
-          <Select.Item
+          <Select.Item 
             class="dark:placeholder:text-white
           dark:bg-dark-el"
             value={continent.value}
-            label={continent.label}>{continent.label}</Select.Item
+            label={continent.label}
+            >{continent.label}</Select.Item
           >
         {/each}
       </Select.Group>
@@ -169,11 +167,20 @@ dark:bg-dark-el"
     {#await countries}
       <p class="text-center font-semibold">Fetching Countries...</p>
     {:then countries}
-      <div>
-        <ul id ="countryList">
+    <div>
+      <ul id ="countryList">
+          {#if region !== undefined} 
           {#each countries as country}
+            {#if country.region === region.value}
               {@render loadCountries(country)}
+            {/if}
           {/each}
+          {:else}
+          {#each countries as country}
+            {@render loadCountries(country)}
+          {/each}
+          {/if}
+         
         </ul>
       </div>
     {/await}

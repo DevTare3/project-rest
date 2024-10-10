@@ -2,7 +2,6 @@
   let { data } = $props();
   const { country } = $derived(data);
   const { borderCountries } = $derived(data);
-  console.log(data);
   import { Button } from "$lib/components/ui/button";
 </script>
 
@@ -12,7 +11,7 @@
 <div class="mt-12 mb-8">
   <img src={item.flags.svg} alt="The flag of {item.name.official}" />
 </div>
-<h1 class="text-lg font-bold mb-4">
+<h1 class="text-xl font-extrabold mb-4">
   {item.name.common}
 </h1>
 <div class="mb-8">
@@ -80,16 +79,17 @@
         {#each country as item}
           {@render countryInfo(item)}
           <p class="font-semibold">Border Countries:</p>
-          <p>{#if item.borders}
-            {#each borderCountries as borderCountry}
-            <Button href='/detailed/{borderCountry.cca3}'>
-              {borderCountry.name}
-            </Button>
-              {/each}
-            {:else}
-            No Border Countries
-          {/if}</p>
-         
+            <div class="flex gap-4 flex-wrap">
+              {#if item.borders}
+              {#each borderCountries as borderCountry}
+              <Button class="bg-white text-black outline-1 outline outline-slate-300  px-6 rounded-sm text-base"  href='/detailed/{borderCountry.code}'>
+                {borderCountry.name}
+              </Button>
+                {/each}
+              {:else}
+              No Border Countries
+                {/if}
+            </div>
         {/each}
       </div>
     {/await}
