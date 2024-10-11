@@ -7,19 +7,18 @@
 
   let inputCountry = $state("");
 
-  type Continent = {
-    value: string;
-    label: string;
-  };
+  
 
-  let region: Continent | undefined = $state();
+  let region = $state("");
 
-  let continents: Continent[] = [
+  const continents = [
     { value: "Africa", label: "Africa" },
     { value: "Americas", label: "America" },
     { value: "Asia", label: "Asia" },
     { value: "Europe", label: "Europe" },
     { value: "Oceania", label: "Oceania" },
+    {value: " ", label:
+      "Reset Regions"},
   ];
 
   interface Country {
@@ -39,10 +38,6 @@
       symbol:string;
     }
   }
-
-
-
-  
 
   function countrySearch()
   {
@@ -74,13 +69,14 @@
   <div
     class="flex items-center shadow-xl dark:outline dark:outline-[.8rem] dark:outline-outline-dark justify-center gap-6 py-5 px-8 mb-8 rounded-md bg-white dark:bg-dark-el"
   >
+  
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="black"
+      stroke="dark"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -89,7 +85,7 @@
     >
     <input
       bind:value={inputCountry} oninput={countrySearch}
-      class="outline-none font-normal dark:placeholder:text-white border-none bg-white dark:bg-dark-el text-black w-full"
+      class="outline-none font-normal dark:placeholder:text-white border-none bg-white dark:bg-dark-el dark:text-white text-black w-full"
       type="search"
       id="search"
       placeholder="Search for a country..."
@@ -113,8 +109,8 @@
           </div>
           <div class=" px-6 pt-6 pb-12 text-base dark:bg-dark-el">
             <h2 class="font-bold text-lg mb-3 searchName">{country.name.common}</h2>
-            <p class="text-light-text font-light">
-              <span class="font-semibold">Population:</span>
+            <p class="text-light-text font-light dark:text-white">
+              <span class="font-semibold ">Population:</span>
               {country.population.toLocaleString("en-US")}
             </p>
             <p>
@@ -130,6 +126,7 @@
     
   </a>  </li>
   {/snippet}
+
 
   
   <Select.Root portal={null} bind:selected={region} >
@@ -171,7 +168,7 @@ dark:bg-dark-el"
       <ul id ="countryList">
           {#if region !== undefined} 
           {#each countries as country}
-            {#if country.region === region.value}
+            {#if country.region === region.valueOf}
               {@render loadCountries(country)}
             {/if}
           {/each}
