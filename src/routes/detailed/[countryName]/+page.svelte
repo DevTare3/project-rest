@@ -8,7 +8,7 @@
 
 {#snippet countryInfo(item)}
 {#if item}
-<div class="mt-12 mb-8">
+<div class="mt-12 mb-12">
   <img src={item.flags.svg} alt="The flag of {item.name.official}" />
 </div>
 <h1 class="text-xl font-extrabold mb-4">
@@ -51,9 +51,9 @@
 {/if}
 {/snippet}
 
-<div class="px-6 py-8">
+<div class="px-6 py-8 dark:bg-dark-bg">
   <Button
-    class="rounded-sm bg-white text-light-text hover:bg-slate-200 shadow-lg font-light px-6  mt-0 mb-0 text-sm"
+    class="rounded-sm bg-white dark:bg-dark-el  text-light-text hover:bg-slate-200 hover:dark:bg-slate-800 dark:text-white shadow-lg font-light px-6  mt-0 mb-0 text-sm dark:shadow-black"
     href="./"
   >
     <svg
@@ -78,11 +78,11 @@
       <div>
         {#each country as item}
           {@render countryInfo(item)}
-          <p class="font-semibold">Border Countries:</p>
+          <p class="font-semibold mb-4">Border Countries:</p>
             <div class="flex gap-4 flex-wrap">
               {#if item.borders}
               {#each borderCountries as borderCountry}
-              <Button class="bg-white text-black outline-1 outline outline-slate-300  px-6 rounded-sm text-base"  href='/detailed/{borderCountry.code}'>
+              <Button class="bg-white text-black outline-1 outline outline-slate-300  px-6 rounded-sm dark:bg-dark-el dark:text-white dark:hover:bg-slate-700 dark:outline-none text-base"  href='/detailed/{borderCountry.code}'>
                 {borderCountry.name}
               </Button>
                 {/each}
