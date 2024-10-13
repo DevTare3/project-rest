@@ -6,20 +6,21 @@
   const { countries } = $derived(data);
 
   let inputCountry = $state("");
+  
+  let region : undefined  = $state();
 
+  let continents  = [
+    { value: "Africa", label: "Africa" },
+    { value: "Americas", label:"America" },
+    { value: "Asia", label: "Asia" },
+    { value: 'Europe', label: "Europe" },
+    { value: 
+      "Oceania", label: "Oceania" }
+  ];
+  
+  
   
 
-  let region = $state("");
-
-  const continents = [
-    { value: "Africa", label: "Africa" },
-    { value: "Americas", label: "America" },
-    { value: "Asia", label: "Asia" },
-    { value: "Europe", label: "Europe" },
-    { value: "Oceania", label: "Oceania" },
-    {value: " ", label:
-      "Reset Regions"},
-  ];
 
   interface Country {
     flags: {
@@ -168,7 +169,7 @@ dark:bg-dark-el"
       <ul id ="countryList">
           {#if region !== undefined} 
           {#each countries as country}
-            {#if country.region === region.valueOf}
+            {#if country.region === region.value}
               {@render loadCountries(country)}
             {/if}
           {/each}
