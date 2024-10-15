@@ -7,7 +7,7 @@
     if(osTheme.state === "Dark Mode")
   {
     osTheme.state = "Light Mode";
-    fill.fill = "dark"
+    fill.fill = "black"
   }
   else {
     osTheme.state = "Dark Mode";
@@ -18,7 +18,7 @@
 </script>
 
 <header>
-  <nav>
+  <nav class={osTheme.state ? 'dark' : ''}>
     <div
       class="bg-white dark:bg-dark-el flex items-center justify-between py-8 px-4 shadow-md"
     >
