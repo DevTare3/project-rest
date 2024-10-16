@@ -2,25 +2,28 @@
   const { children } = $props();
   import "../app.css";
   import {osTheme,fill} from '../osTheme.svelte'
+  let isDark = $state(false);
 
   function toggleTheme() {
     if(osTheme.state === "Dark Mode")
   {
     osTheme.state = "Light Mode";
-    fill.fill = "black"
+    fill.fill = "white"
+    isDark = true;
+    
   }
   else {
     osTheme.state = "Dark Mode";
-    fill.fill = "white"
+    fill.fill = "black" 
+    isDark = false;
   }
   }
-
 
 
 </script>
 
 <header>
-  <nav class={osTheme.state ? 'dark' : ''}>
+  <nav class={isDark ? 'dark' : ''}>
     <div
       class="bg-white dark:bg-dark-el flex items-center justify-between py-8 px-4 shadow-md"
     >
