@@ -1,29 +1,56 @@
 <script lang="ts">
   const { children } = $props();
   import "../app.css";
-  import {osTheme,fill} from '../osTheme.svelte'
-  let isDark = $state(false);
+  // import {osTheme,fill} from '../osTheme.svelte'
+  // let isDark = $state(false);
 
-  function toggleTheme() {
-    if(osTheme.state === "Dark Mode")
-  {
-    osTheme.state = "Light Mode";
-    fill.fill = "white"
-    isDark = true;
+  // function toggleTheme() {
+  //   if(osTheme.state === "Dark Mode")
+  // {
+  //   osTheme.state = "Light Mode";
+  //   fill.fill = "white"
+  //   isDark = true;
     
-  }
-  else {
-    osTheme.state = "Dark Mode";
-    fill.fill = "black" 
-    isDark = false;
-  }
+  // }
+  // else {
+  //   osTheme.state = "Dark Mode";
+  //   fill.fill = "black" 
+  //   isDark = false;
+  // }
+  // }
+function getThemeAsString({
+  localStorageTheme,systemSettingDark
+})
+  {
+    if(localStorageTheme !== null)
+      {return localStorageTheme}
+
+    if(systemSettingDark.matches)
+      {return "dark"}
+
+  return ""
   }
 
+
+function updateThemeBtn({themeSwitchBtn, isDark})
+{
+  let switchMsg = isDark ? "Light Mode" : "Dark Mode";
+  themeSwitchBtn.setAttribute("aria-label", switchMsg)
+  themeSwitchBtn.innerText = switchMsg
+}
+
+function updateThemeOnHtml({theme})
+{
+  if(document.querySelector("html") !== null)
+  {
+    document.querySelector("html").setAttribute("data-theme", theme);
+  }
+}
 
 </script>
 
 <header>
-  <nav class={isDark ? 'dark' : ''}>
+  <nav>
     <div
       class="bg-white dark:bg-dark-el flex items-center justify-between py-8 px-4 shadow-md"
     >
@@ -38,15 +65,15 @@
           width="24"
           height="24"
           viewBox="0 0 24 24"
-          fill={fill.fill}
+          fill="none"
           class="lucide lucide-moon"
           ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg
         >
-        <button onclick={toggleTheme}>
+        <button>
           <p 
-            class="text-light-text dark:text-white"
+            class="text-light-text dark:text-white" aria-label="Change to light theme" data-theme-toggle
           >
-            {osTheme.state}
+            <!-- {osTheme.state} -->
           </p>
         </button>
       </div>
