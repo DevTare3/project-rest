@@ -1,49 +1,16 @@
 <script lang="ts">
   const { children } = $props();
   import "../app.css";
-  // import {osTheme,fill} from '../osTheme.svelte'
-  // let isDark = $state(false);
+  let mode = $state('dark');
 
-  // function toggleTheme() {
-  //   if(osTheme.state === "Dark Mode")
-  // {
-  //   osTheme.state = "Light Mode";
-  //   fill.fill = "white"
-  //   isDark = true;
-    
-  // }
-  // else {
-  //   osTheme.state = "Dark Mode";
-  //   fill.fill = "black" 
-  //   isDark = false;
-  // }
-  // }
-function getThemeAsString({
-  localStorageTheme,systemSettingDark
-})
+  function changeTheme() {
+    if(mode == 'light')
   {
-    if(localStorageTheme !== null)
-      {return localStorageTheme}
-
-    if(systemSettingDark.matches)
-      {return "dark"}
-
-  return ""
+    mode = 'dark'
   }
 
-
-function updateThemeBtn({themeSwitchBtn, isDark})
-{
-  let switchMsg = isDark ? "Light Mode" : "Dark Mode";
-  themeSwitchBtn.setAttribute("aria-label", switchMsg)
-  themeSwitchBtn.innerText = switchMsg
-}
-
-function updateThemeOnHtml({theme})
-{
-  if(document.querySelector("html") !== null)
-  {
-    document.querySelector("html").setAttribute("data-theme", theme);
+  else {
+    mode = 'light'
   }
 }
 
@@ -65,17 +32,19 @@ function updateThemeOnHtml({theme})
           width="24"
           height="24"
           viewBox="0 0 24 24"
-          fill="none"
+          fill="black"
           class="lucide lucide-moon"
           ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg
         >
-        <button>
-          <p 
-            class="text-light-text dark:text-white" aria-label="Change to light theme" data-theme-toggle
-          >
-            <!-- {osTheme.state} -->
-          </p>
-        </button>
+        <form method="POST">
+            <button onclick={changeTheme} formaction="/?/setTheme&theme={mode}">
+            <p
+              class="text-light-text dark:text-white" aria-label="Change to light theme" data-theme-toggle
+            >
+             Change
+            </p>
+          </button>
+        </form>
       </div>
     </div>
   </nav>
