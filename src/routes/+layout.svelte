@@ -1,7 +1,7 @@
 <script lang="ts">
   const { children } = $props();
   import "../app.css";
-  let mode = $state('dark');
+  let mode = $state('light');
 
   function changeTheme() {
     if(mode == 'light')

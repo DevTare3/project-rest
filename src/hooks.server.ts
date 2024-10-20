@@ -1,3 +1,4 @@
+import { COLOR } from "$env/static/private";
 import type { Handle } from "@sveltejs/kit";
 
 export const handle = (async ({event, resolve}) => {
@@ -11,13 +12,14 @@ export const handle = (async ({event, resolve}) => {
     {
         theme = cookieTheme;
     }
-
+    
     if(theme) {
+        console.log(theme);
         return await resolve(event, {
-            transformPageChunk: ({html}) => 
-                html.replace('data-theme=""',`data-theme="${theme}"`),
-            }
-        )
-    }
-    return await resolve(event)
+            transformPageChunk: ({html}) =>
+                html.replace('class="font-nunito"',`class="font-nunito ${theme}"`),
+        }
+    )
+}
+return await resolve(event) 
 }) satisfies Handle
