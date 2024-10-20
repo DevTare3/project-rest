@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   const { children } = $props();
   import "../app.css";
   let mode = $state('light');
@@ -11,6 +12,14 @@
 
   else {
     mode = 'light'
+  }
+}
+
+const submitUpdateTheme = ({action}) => {
+  const theme = action.searchParams.get('theme');
+
+  if(theme) {
+    document.documentElement.setAttribute('class', theme + ' font-nunito'); 
   }
 }
 
@@ -36,7 +45,7 @@
           class="lucide lucide-moon"
           ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg
         >
-        <form method="POST">
+        <form method="POST" use:enhance={submitUpdateTheme}>
             <button onclick={changeTheme} formaction="/?/setTheme&theme={mode}">
             <p
               class="text-light-text dark:text-white" aria-label="Change to light theme" data-theme-toggle
