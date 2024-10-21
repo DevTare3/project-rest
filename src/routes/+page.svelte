@@ -18,10 +18,6 @@
       "Oceania", label: "Oceania" }
   ];
   
-  
-  
-
-
   interface Country {
     flags: {
       svg:string;
@@ -97,13 +93,13 @@
   {#snippet loadCountries(country : Country)}
   <li  id = "item"
   class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
-  dark:bg-dark-el"
+  dark:bg-dark-el max-h-[30rem]"
   >
   <a href="/detailed/{country.cca3}" data-sveltekit-preload-data>
     <button class="border-none p-0 m-0 text-left block">
-          <div class="rounded-t-md">
+          <div class="rounded-t-md ">
             <img
-              class="rounded-t-md"
+              class="rounded-t-md" 
               src={country.flags.svg}
               alt="the flag of {country.name.official}"
             />
@@ -166,7 +162,7 @@ dark:bg-dark-el"
       <p class="text-center font-semibold">Fetching Countries...</p>
     {:then countries}
     <div>
-      <ul id ="countryList">
+      <ul id ="countryList" class="lg:grid lg:grid-cols-4 lg:gap-14 ">
           {#if region !== undefined} 
           {#each countries as country}
             {#if country.region === region.value}

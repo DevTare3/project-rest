@@ -3,15 +3,17 @@
   const { children } = $props();
   import "../app.css";
   let mode = $state('light');
-
+  let fill = $state('black')
   function changeTheme() {
     if(mode == 'light')
   {
     mode = 'dark'
+    fill = 'white';
   }
 
   else {
     mode = 'light'
+    fill = 'black';
   }
 }
 
@@ -41,14 +43,14 @@ const submitUpdateTheme = ({action}) => {
           width="24"
           height="24"
           viewBox="0 0 24 24"
-          fill="black"
+          fill={fill}
           class="lucide lucide-moon"
           ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg
         >
         <form method="POST" use:enhance={submitUpdateTheme}>
             <button onclick={changeTheme} formaction="/?/setTheme&theme={mode}">
             <p
-              class="text-light-text dark:text-white" aria-label="Change to light theme" data-theme-toggle
+              class="text-light-text dark:text-white" aria-label="Change to light theme"
             >
              Change
             </p>
