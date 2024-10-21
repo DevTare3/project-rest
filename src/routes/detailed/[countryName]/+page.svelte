@@ -12,11 +12,11 @@
   <div class="mt-12 mb-12">
     <img src={item.flags.svg} alt="The flag of {item.name.official}" />
   </div>
-  <div class="lg:grid lg:grid-cols-2">
-    <h1 class="text-xl font-extrabold mb-4 lg:mb-2">
-      {item.name.common}
-    </h1>
+  <div class="lg:grid lg:grid-cols-2 lg:items-center">
     <div class="mb-8">
+      <h1 class="text-xl font-extrabold mb-4 lg:mb-6 lg:text-3xl">
+        {item.name.common}
+      </h1>
       {#if item.name.nativeName}
       <p class="mb-2"><span class="font-semibold text-base">Native Name: </span> {item.name.nativeName[Object.keys(item.name.nativeName)[0]].common}</p>
       {/if}
@@ -28,40 +28,44 @@
       <p class="mb-2"><span class="font-semibold text-base">Sub Region: </span> {item.subregion}</p>
       <p class="mb-2"><span class="font-semibold text-base">Capital: </span> {item.capital}</p>
     </div>
-    <p class="mb-2"><span class="font-semibold text-base">Top Level Domain: </span> {item.tld}</p>
-    {#if item.currencies }
-    <p class="mb-2">
-      <span class="font-semibold text-base">Currencies: </span>
-      {item.currencies[Object.keys(item.currencies)[0]].name}
-    </p>
-    {/if}
-    {#if item.languages}
-    <p class="mb-2">
-      <span class="font-semibold text-base">Languages: </span>
-      {Object.values(item.languages).join(", ")}
-    </p>
-    {/if}
-    <p class="mb-2"><span class="font-semibold text-base">Driving Side:</span> {item.car.side}</p>
-    <p class="mb-8">
-      <span class="font-semibold text-base">Landlocked: </span>
-      {#if item.landlocked}
-        Yes
-      {:else}
-        No
+    <div>
+      <p class="mb-2"><span class="font-semibold text-base">Top Level Domain: </span> {item.tld}</p>
+      {#if item.currencies }
+      <p class="mb-2">
+        <span class="font-semibold text-base">Currencies: </span>
+        {item.currencies[Object.keys(item.currencies)[0]].name}
+      </p>
       {/if}
-    </p>
-    <p class="font-semibold mb-4">Border Countries:</p>
-            <div class="flex gap-4 flex-wrap">
-              {#if item.borders}
-              {#each borderCountries as borderCountry}
-              <Button class="bg-white text-black outline-1 outline outline-slate-300  px-6 rounded-sm dark:bg-dark-el dark:text-white dark:hover:bg-slate-700 dark:outline-none text-base"  href='/detailed/{borderCountry.code}'>
-                {borderCountry.name}
-              </Button>
-                {/each}
-              {:else}
-              No Border Countries
-                {/if}
-            </div>
+      {#if item.languages}
+      <p class="mb-2">
+        <span class="font-semibold text-base">Languages: </span>
+        {Object.values(item.languages).join(", ")}
+      </p>
+      {/if}
+      <p class="mb-2"><span class="font-semibold text-base">Driving Side:</span> {item.car.side}</p>
+      <p class="mb-8">
+        <span class="font-semibold text-base">Landlocked: </span>
+        {#if item.landlocked}
+          Yes
+        {:else}
+          No
+        {/if}
+      </p>
+    </div>
+    <div class="lg:flex lg:gap-4">
+      <p class="font-semibold mb-4">Border Countries:</p>
+              <div class="flex gap-4 flex-wrap">
+                {#if item.borders}
+                {#each borderCountries as borderCountry}
+                <Button class="bg-white text-black outline-1 outline outline-slate-300  px-6 rounded-sm dark:bg-dark-el dark:text-white dark:hover:bg-slate-700 dark:outline-none text-base"  href='/detailed/{borderCountry.code}'>
+                  {borderCountry.name}
+                </Button>
+                  {/each}
+                {:else}
+                No Border Countries
+                  {/if}
+              </div>
+    </div>
     </div>
   </div>
     {/if}
