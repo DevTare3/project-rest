@@ -12,7 +12,7 @@
   <div class="mt-12 mb-12">
     <img src={item.flags.svg} alt="The flag of {item.name.official}" />
   </div>
-  <div class="lg:grid lg:grid-cols-2 lg:items-center content-center">
+  <div class="lg:grid lg:grid-cols-2 lg:items-center lg:content-center">
     <div class="mb-8">
       <h1 class="text-xl font-extrabold  lg:mb-6 lg:text-3xl">
         {item.name.common}
@@ -74,7 +74,7 @@
 <div class="px-6 py-8 dark:bg-dark-bg">
   <Button
     class="rounded-sm bg-white dark:bg-dark-el  text-light-text hover:bg-slate-200 hover:dark:bg-slate-800 dark:text-white shadow-lg font-light px-6  mt-0 mb-0 text-sm dark:shadow-black"
-    href="./"
+    href="/"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
