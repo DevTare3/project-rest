@@ -12,13 +12,13 @@
   <div class="mt-12 mb-12">
     <img src={item.flags.svg} alt="The flag of {item.name.official}" />
   </div>
-  <div class="lg:grid lg:grid-cols-2 lg:items-center">
+  <div class="lg:grid lg:grid-cols-2 lg:items-center content-center">
     <div class="mb-8">
-      <h1 class="text-xl font-extrabold mb-4 lg:mb-6 lg:text-3xl">
+      <h1 class="text-xl font-extrabold  lg:mb-6 lg:text-3xl">
         {item.name.common}
       </h1>
       {#if item.name.nativeName}
-      <p class="mb-2"><span class="font-semibold text-base">Native Name: </span> {item.name.nativeName[Object.keys(item.name.nativeName)[0]].common}</p>
+      <p class="mb-2 mt-4"><span class="font-semibold text-base">Native Name: </span> {item.name.nativeName[Object.keys(item.name.nativeName)[0]].common}</p>
       {/if}
       <p class="mb-2">
         <span class="font-semibold text-base">Population: </span>
