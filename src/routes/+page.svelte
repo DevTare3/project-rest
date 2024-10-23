@@ -62,33 +62,65 @@
 
 </script>
 
-<div class="bg-light-bg dark:bg-dark-bg px-6 py-8">
-  <div
-    class="flex items-center shadow-xl dark:outline dark:outline-[.8rem] dark:outline-outline-dark justify-center gap-6 py-5 px-8 mb-8 rounded-md bg-white dark:bg-dark-el"
-  >
-  
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="dark"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-search"
-      ><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg
+<div class="bg-light-bg dark:bg-dark-bg px-6 py-8 ">
+  <div class="lg:flex lg:gap-4 lg:items-center lg:justify-between">
+    <div
+      class="flex items-center shadow-xl dark:outline dark:outline-[.8rem] dark:outline-outline-dark px-8 gap-6 py-5 mb-8 lg:mb-0 rounded-md bg-white dark:bg-dark-el"
     >
-    <input
-      bind:value={inputCountry} oninput={countrySearch}
-      class="outline-none font-normal dark:placeholder:text-white border-none bg-white dark:bg-dark-el dark:text-white text-black w-full"
-      type="search"
-      id="search"
-      placeholder="Search for a country..."
-    />
+    
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-search"
+        ><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg
+      >
+      <input
+        bind:value={inputCountry} oninput={countrySearch}
+        class="outline-none font-normal dark:placeholder:text-white border-none bg-white dark:bg-dark-el dark:text-white text-black lg:min-w-[25rem]"
+        type="search"
+        id="search"
+        placeholder="Search for a country..."
+        />
+      </div>
+    
+      <Select.Root portal={null} bind:selected={region}>
+        <Select.Trigger
+          class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
+    dark:bg-dark-el font-semibold text-base max-w-[15rem]"
+        >
+          <Select.Value
+            class="px-4 dark:placeholder:text-white
+    dark:bg-dark-el"
+            placeholder="Filter by Region"
+          />
+        </Select.Trigger>
+        <Select.Content
+          class="dark:placeholder:text-white
+    dark:bg-dark-el"
+        >
+          <Select.Group>
+            <Select.Label>Regions</Select.Label>
+            {#each continents as continent}
+              <Select.Item
+                class="dark:placeholder:text-white
+              dark:bg-dark-el"
+                value={continent.value}
+                label={continent.label}
+                >{continent.label}</Select.Item
+              >
+            {/each}
+          </Select.Group>
+        </Select.Content>
+        <Select.Input name="region" />
+      </Select.Root>
   </div>
-
 
   {#snippet loadCountries(country : Country)}
   <li  id = "item"
@@ -126,36 +158,6 @@
 
 
   
-  <Select.Root portal={null} bind:selected={region} >
-    <Select.Trigger 
-      class="py-8 w-[55vw] shadow-xl dark:placeholder:text-white
-dark:bg-dark-el font-semibold text-base"
-    >
-      <Select.Value
-        class="px-4 dark:placeholder:text-white
-dark:bg-dark-el"
-        placeholder="Filter by Region"
-      />
-    </Select.Trigger>
-    <Select.Content
-      class="dark:placeholder:text-white
-dark:bg-dark-el"
-    >
-      <Select.Group>
-        <Select.Label>Regions</Select.Label>
-        {#each continents as continent}
-          <Select.Item 
-            class="dark:placeholder:text-white
-          dark:bg-dark-el"
-            value={continent.value}
-            label={continent.label}
-            >{continent.label}</Select.Item
-          >
-        {/each}
-      </Select.Group>
-    </Select.Content>
-    <Select.Input name="region" />
-  </Select.Root>
 
   <div class="flex items-center justify-center px-12 py-10">
     {#await countries}

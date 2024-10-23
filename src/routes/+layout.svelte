@@ -30,7 +30,7 @@ const submitUpdateTheme = ({action}) => {
 <header>
   <nav>
     <div
-      class="bg-white dark:bg-dark-el flex items-center justify-between py-8 px-4 shadow-md"
+      class="bg-white dark:bg-dark-el flex items-center justify-between py-8 px-4 shadow-md lg:px-14"
     >
       <p
         class="text-light-text text-lg font-bold dark:text-white"
