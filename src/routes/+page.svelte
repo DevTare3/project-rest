@@ -125,13 +125,13 @@
   {#snippet loadCountries(country : Country)}
   <li  id = "item"
   class="bg-white shadow-xl mb-10 rounded-b-md dark:outline-outline-dark dark:text-white
-  dark:bg-dark-el "
+  dark:bg-dark-el w-80 h-96"
   >
   <a href="/detailed/{country.cca3}" data-sveltekit-preload-data>
     <button class="border-none p-0 m-0 text-left block">
           <div class="rounded-t-md ">
             <img
-              class="rounded-t-md" 
+              class="rounded-t-md h-[13.5rem]" 
               src={country.flags.svg}
               alt="the flag of {country.name.official}"
             />
